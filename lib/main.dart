@@ -33,9 +33,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   void initState() {
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    degOne = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: animationController, curve: Curves.bounceOut));
+    degOne = Tween(begin: 0.0, end: 1.0).animate(
+        CurvedAnimation(parent: animationController, curve: Curves.bounceOut));
     super.initState();
-    rotationAnimation = Tween<double>(begin: 180.0, end: 0.0).animate(
+    rotationAnimation = Tween<double>(begin: 0.0, end: 0.0).animate(
         CurvedAnimation(curve: Curves.bounceOut, parent: animationController));
     animationController.addListener(() {
       setState(() {});
@@ -54,56 +55,213 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.transparent,
+        onPressed: () {},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton:
+      // Stack(
+      //   overflow: Overflow.visible,
+      //   children: <Widget>[
+      //     Positioned(
+      //       right: 140,
+      //       bottom: 0,
+      //       child: Row(
+      //         children: <Widget>[
+      //           // Transform.translate(
+      //           //   offset: Offset.fromDirection(
+      //           //       getRadiansFromDegree(0), degOne.value * 180),
+      //           //   child: Transform(
+      //           //     alignment: Alignment.center,
+      //           // child: CircularButton(
+      //           //     color: Colors.blue,
+      //           //     width: 50,
+      //           //     height: 50,
+      //           //     icon: Icon(
+      //           //       Icons.add,
+      //           //       color: Colors.white,
+      //           //     ),
+      //           //     onClick: () {}),
+      //           //     transform: Matrix4.rotationZ(
+      //           //         getRadiansFromDegree(rotationAnimation.value))..scale(degOne.value),
+      //           //   ),
+      //           // ),
+      //           GestureDetector(
+      //             onTap: () {
+      //               print("asdasdasdasdasd");
+      //             },
+      //             child: Container(
+      //               width: degOne.value * 180,
+      //               alignment: Alignment(5, 0),
+      //               child: Transform(
+      //                 transform: Matrix4.rotationZ(
+      //                     getRadiansFromDegree(rotationAnimation.value))
+      //                   ..scale(degOne.value),
+      //                 alignment: Alignment.center,
+      //                 child: CircularButton(
+      //                     color: Colors.blue,
+      //                     width: 50,
+      //                     height: 50,
+      //                     icon: Icon(
+      //                       Icons.add,
+      //                       color: Colors.white,
+      //                     ),
+      //                     onClick: () {
+      //                       print("OnClicking");
+      //                     }),
+      //               ),
+      //             ),
+      //           ),
+
+      //           Container(
+      //             width: degOne.value * 100,
+      //             child: Transform(
+      //               transform: Matrix4.rotationZ(
+      //                   getRadiansFromDegree(rotationAnimation.value))
+      //                 ..scale(degOne.value),
+      //               alignment: Alignment.center,
+      //               child: CircularButton(
+      //                   color: Colors.black,
+      //                   width: 50,
+      //                   height: 50,
+      //                   icon: Icon(
+      //                     Icons.camera,
+      //                     color: Colors.white,
+      //                   ),
+      //                   onClick: () {
+      //                     print("asdasda");
+      //                   }),
+      //             ),
+      //           ),
+      //           Container(
+      //             width: degOne.value * 120,
+      //             alignment: Alignment(-1.0, 0.0),
+      //             child: Transform(
+      //               transform: Matrix4.rotationZ(
+      //                   getRadiansFromDegree(rotationAnimation.value))
+      //                 ..scale(degOne.value),
+      //               alignment: Alignment.center,
+      //               child: CircularButton(
+      //                   color: Colors.orangeAccent,
+      //                   width: 50,
+      //                   height: 50,
+      //                   icon: Icon(
+      //                     Icons.person,
+      //                     color: Colors.white,
+      //                   ),
+      //                   onClick: () {
+      //                     print("sdasdas");
+      //                   }),
+      //             ),
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //     Positioned(
+      //       bottom: 0,
+      //       child: Transform(
+      //         transform: Matrix4.rotationZ(
+      //             getRadiansFromDegree(rotationAnimation.value)),
+      //         alignment: Alignment.center,
+      //         child: CircularButton(
+      //             color: Colors.red,
+      //             width: 60,
+      //             height: 60,
+      //             icon: Icon(
+      //               Icons.menu,
+      //               color: Colors.white,
+      //             ),
+      //             onClick: () {
+      //               (animationController.isCompleted)
+      //                   ? animationController.reverse()
+      //                   : animationController.forward();
+      //             }),
+      //       ),
+      //     )
+      //   ],
+      // ),
+
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        notchMargin: 15,
+        color: Colors.red,
+        child: Row(
+          children: <Widget>[
+            Icon(
+              Icons.home,
+              size: 40,
+            ),
+            Icon(Icons.business),
+          ],
+        ),
+      ),
       body: Container(
           height: size.height,
           width: size.width,
           child: Stack(
             children: <Widget>[
               Positioned(
-                right: 180,
-                bottom: 30,
+                bottom: 0,
+                width: size.width,
                 child: Stack(
                   children: <Widget>[
-                    Transform.translate(
-                      offset: Offset.fromDirection(
-                          getRadiansFromDegree(0), degOne.value * 180),
+                    Align(
+                      alignment: Alignment(1.0, 0.0),
+                      child: Container(
+                        width: degOne.value * 120,
+                        child: Transform(
+                          transform: Matrix4.rotationZ(
+                              getRadiansFromDegree(rotationAnimation.value))
+                            ..scale(degOne.value),
+                          alignment: Alignment.center,
+                          child: CircularButton(
+                              color: Colors.blue,
+                              width: 50,
+                              height: 50,
+                              icon: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                              onClick: () {
+                                print("OnClicking");
+                              }),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment(-0.5,0.0),
+                                          child: Container(
+                        width: degOne.value * 120,
+                        child: Transform(
+                          
+                          transform: Matrix4.rotationZ(
+                              getRadiansFromDegree(rotationAnimation.value))
+                            ..scale(degOne.value),
+                          alignment: Alignment.center,
+                          child: CircularButton(
+                              color: Colors.black,
+                              width: 50,
+                              height: 50,
+                              icon: Icon(
+                                Icons.camera,
+                                color: Colors.white,
+                              ),
+                              onClick: () {
+                                print("CircleIcon");
+                              }),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: degOne.value * 120,
+                      alignment: Alignment(-1.0, 0.0),
                       child: Transform(
+                        transform: Matrix4.rotationZ(
+                            getRadiansFromDegree(rotationAnimation.value))
+                          ..scale(degOne.value),
                         alignment: Alignment.center,
                         child: CircularButton(
-                            color: Colors.blue,
-                            width: 50,
-                            height: 50,
-                            icon: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                            ),
-                            onClick: () {}),
-                        transform: Matrix4.rotationZ(
-                            getRadiansFromDegree(rotationAnimation.value))..scale(degOne.value),
-                      ),
-                    ),
-                    Transform.translate(
-                      offset: Offset.fromDirection(
-                          getRadiansFromDegree(0), degOne.value * 100),
-                      child: Transform(
-                        transform:Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(degOne.value),
-                        alignment:Alignment.center,
-                                              child: CircularButton(
-                            color: Colors.black,
-                            width: 50,
-                            height: 50,
-                            icon: Icon(
-                              Icons.camera,
-                              color: Colors.white,
-                            ),
-                            onClick: () {}),
-                      ),
-                    ),
-                    Transform.translate(
-                      child: Transform(
-                        transform:Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(degOne.value),
-                        alignment: Alignment.center,
-                                              child: CircularButton(
                             color: Colors.orangeAccent,
                             width: 50,
                             height: 50,
@@ -111,30 +269,34 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                               Icons.person,
                               color: Colors.white,
                             ),
-                            onClick: () {}),
+                            onClick: () {
+                              print("Person");
+                            }),
                       ),
-                      offset: Offset.fromDirection(
-                          getRadiansFromDegree(180), degOne.value * 100),
-                    ),
-                    Transform(
-                      transform:Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value)),
-                      alignment: Alignment.center,
-
-                                          child: CircularButton(
-                          color: Colors.red,
-                          width: 60,
-                          height: 60,
-                          icon: Icon(
-                            Icons.menu,
-                            color: Colors.white,
-                          ),
-                          onClick: () {
-                            (animationController.isCompleted)
-                                ? animationController.reverse()
-                                : animationController.forward();
-                          }),
                     ),
                   ],
+                ),
+              ),
+              Positioned(
+                right: 140,
+                bottom: 0,
+                child: Transform(
+                  transform: Matrix4.rotationZ(
+                      getRadiansFromDegree(rotationAnimation.value)),
+                  alignment: Alignment.center,
+                  child: CircularButton(
+                      color: Colors.red,
+                      width: 60,
+                      height: 60,
+                      icon: Icon(
+                        Icons.menu,
+                        color: Colors.white,
+                      ),
+                      onClick: () {
+                        (animationController.isCompleted)
+                            ? animationController.reverse()
+                            : animationController.forward();
+                      }),
                 ),
               )
             ],
@@ -156,10 +318,10 @@ class CircularButton extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      child: IconButton(
-        icon: icon,
-        onPressed: onClick,
-        enableFeedback: true,
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        child: icon,
+        onTap: onClick,
       ),
       decoration: BoxDecoration(color: color, shape: BoxShape.circle),
     );
